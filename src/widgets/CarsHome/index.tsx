@@ -2,20 +2,24 @@ import { cars } from "@/shared/cars";
 import { CarProps } from "@/shared/types";
 import clsx from "clsx";
 import { useSpring, animated } from "react-spring";
+import { useInView } from "react-intersection-observer";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
 }
 
 const AnimatedListItem = ({ delay, title, description, images, number }: CarPropsWithAnimation) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
+  });
   const animation = useSpring({
-    from: { opacity: 0, transform: "translateY(5px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
+    from: { opacity: inView ? 0 : 1, transform: inView ? "translateY(5px)" : "translateY(0)" },
+    to: { opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(5px)" },
     config: { duration: 700 },
     delay: delay,
   });
 
   return (
-    <animated.div style={animation}>
+    <animated.div ref={ref} style={animation}>
       <a key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white transition-all duration-[1000ms]")}>
         <div className="relative overflow-hidden pb-[100%]">
           <img className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100" src={`/images/cars/${images[0]}`} alt="" />

@@ -8,7 +8,7 @@ interface ComponentProps {}
 const HeaderBakground: FC<ComponentProps> = () => {
   return (
     <>
-      <div className="bg-zinc-900 text-white">
+      <header className="bg-zinc-900 text-white">
         <div className="container flex items-center justify-between py-4">
           <animated.div
             style={useSpring({
@@ -66,10 +66,10 @@ const HeaderBakground: FC<ComponentProps> = () => {
               delay: 250,
             })}
           >
-            <Link href="/">О нас</Link>
+            <Link href="/about">О нас</Link>
           </animated.div>
         </nav>
-      </div>
+      </header>
     </>
   );
 };

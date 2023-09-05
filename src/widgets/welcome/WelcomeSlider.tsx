@@ -32,7 +32,7 @@ const WelcomeSlider: FC<ComponentProps> = () => {
     },
   ];
   return (
-    <div className="relative h-[calc(100vh-81px)] text-white">
+    <div className="relative h-[calc(100vh)] text-white">
       <Swiper
         modules={[EffectFade]}
         className="h-full"
@@ -66,8 +66,8 @@ const WelcomeSlider: FC<ComponentProps> = () => {
               <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/50 text-white">
                 <div
                   className={clsx("flex max-w-[900px] flex-col items-center space-y-4 rounded-lg p-6 text-center transition duration-300", {
-                    "bg-black/0 backdrop-blur-0": !match,
-                    "bg-black/20 backdrop-blur-sm": match,
+                    "bg-black/0 md:backdrop-blur-0": !match,
+                    "bg-black/20 md:backdrop-blur-sm": match,
                   })}
                 >
                   <p

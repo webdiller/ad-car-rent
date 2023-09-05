@@ -8,7 +8,7 @@ interface ComponentProps {}
 const HeaderHome: FC<ComponentProps> = () => {
   return (
     <>
-      <div className="absolute left-0 top-0 z-10 w-full text-white">
+      <header className="absolute left-0 top-0 z-10 w-full text-white">
         <div className="container flex items-center justify-between py-4">
           <animated.div
             style={useSpring({
@@ -66,10 +66,10 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 250,
             })}
           >
-            <Link href="/">О нас</Link>
+            <Link href="/about">О нас</Link>
           </animated.div>
         </nav>
-      </div>
+      </header>
     </>
   );
 };

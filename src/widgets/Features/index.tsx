@@ -1,9 +1,27 @@
 import clsx from "clsx";
 import React, { FC } from "react";
+import { useSpring, animated } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
 interface ComponentProps {}
 
 const Features: FC<ComponentProps> = () => {
+  const [rootRef, rootRefInView] = useInView({
+    triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
+  });
+  const animationTitle = useSpring({
+    from: { opacity: rootRefInView ? 0 : 1 },
+    to: { opacity: rootRefInView ? 1 : 0 },
+    config: { duration: 300 },
+    delay: 100,
+  });
+  const animationSubtitle = useSpring({
+    from: { opacity: rootRefInView ? 0 : 1 },
+    to: { opacity: rootRefInView ? 1 : 0 },
+    config: { duration: 300 },
+    delay: 300,
+  });
+
   const featuresData = [
     { title: "Эксклюзивный выбор автомобилей", description: "Наши автомобили представляют самые престижные марки, чтобы вы всегда чувствовали себя особенным." },
 
@@ -21,9 +39,13 @@ const Features: FC<ComponentProps> = () => {
   ];
   return (
     <div className="container py-[50px] sm:py-[100px]">
-      <div className="mb-10 border-b-[1px] border-white/10 pb-4 text-left text-white">
-        <p className="text-[30px] md:text-[50px]">Наши Основные Преимущества</p>
-        <p className="text-[#a6a6a6] md:text-[20px]">Лидерство в Элитном Прокате Автомобилей</p>
+      <div ref={rootRef} className="mb-10 border-b-[1px] border-white/10 pb-4 text-left text-white">
+        <animated.p style={animationTitle} className="text-[30px] md:text-[50px]">
+          Наши Основные Преимущества
+        </animated.p>
+        <animated.p style={animationSubtitle} className="text-[#a6a6a6] md:text-[20px]">
+          Лидерство в Элитном Прокате Автомобилей
+        </animated.p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
