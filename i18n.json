@@ -3,7 +3,7 @@
   "defaultLocale": "ru",
   "localeDetection": false,
   "pages": {
-    "*": ["common"],
+    "*": ["header"],
     "/": ["header", "welcome"],
     "/about": ["about"],
     "/catalog/[number]": ["catalog"]
