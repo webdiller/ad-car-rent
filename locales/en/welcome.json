@@ -1,0 +1,19 @@
+{
+  "features": [
+    {
+      "title": "Car Rental",
+      "description": "Your path to comfort and freedom!",
+      "actionBtn": "Visit catalog"
+    },
+    {
+      "title": "Exceptional Luxury",
+      "description": "Turn your dreams into reality with our collection of elite cars.",
+      "actionBtn": "Visit catalog"
+    },
+    {
+      "title": "Flawless Elegance",
+      "description": "Our cars offer outstanding style and unparalleled comfort.",
+      "actionBtn": "Visit catalog"
+    }
+  ]
+}

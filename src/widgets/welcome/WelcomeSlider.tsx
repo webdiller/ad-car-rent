@@ -9,28 +9,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // @ts-ignore
 import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import { clsx } from "clsx";
+import useTranslation from "next-translate/useTranslation";
 interface ComponentProps {}
+
+interface FeatureProps {
+  title: string;
+  description: string;
+  actionBtn: string;
+  imgUrl?: string;
+}
 
 const WelcomeSlider: FC<ComponentProps> = () => {
   const [swiperActiveIndex, swiperActiveIndexSet] = useState(0);
   SwiperCore.use([Autoplay]);
-  const data = [
-    {
-      title: "Прокат автомобилей",
-      description: "Ваш путь к комфорту и свободе!",
-      imgUrl: bgImage2.src,
-    },
-    {
-      title: "Исключительная Роскошь",
-      description: "Воплотите свои мечты в реальность с нашей коллекцией элитных автомобилей",
-      imgUrl: bgImage.src,
-    },
-    {
-      title: "Безупречная Элегантность",
-      description: "Наши автомобили предлагают выдающийся стиль и непревзойденный комфорт",
-      imgUrl: bgImage3.src,
-    },
-  ];
+  const { t: translate, lang } = useTranslation("welcome");
+  const features: FeatureProps[] = translate("features", { count: 1 }, { returnObjects: true });
+  const parsedFeatures: FeatureProps[] = [...features];
+  [bgImage2.src, bgImage.src, bgImage3.src].map((item, indx) => {
+    parsedFeatures[indx].imgUrl = item;
+  });
+
   return (
     <div className="relative h-[calc(100vh)] text-white">
       <Swiper
@@ -48,7 +46,7 @@ const WelcomeSlider: FC<ComponentProps> = () => {
         }}
         onSlideChange={(e) => swiperActiveIndexSet(e.realIndex)}
       >
-        {data.map((item, indx) => {
+        {parsedFeatures.map((item, indx) => {
           const match = indx === swiperActiveIndex;
 
           return (
@@ -93,7 +91,7 @@ const WelcomeSlider: FC<ComponentProps> = () => {
                       "translate-y-0 opacity-0": !match,
                     })}
                   >
-                    Смотреть автомобили
+                    {item.actionBtn}
                   </Link>
                 </div>
               </div>
