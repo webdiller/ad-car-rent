@@ -1,14 +1,15 @@
 import type { AppProps } from "next/app";
 import { ReactElement, ReactNode, useEffect } from "react";
 import { NextPage } from "next";
+import Script from "next/script";
 import localFont from "next/font/local";
+import { appWithTranslation } from "next-i18next";
 
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "swiper/css";
 import "@/styles/globals.css";
-import Script from "next/script";
 
 const noirPro = localFont({
   src: [
@@ -32,9 +33,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   useEffect(() => {
-    document.documentElement.classList.add('js')
+    document.documentElement.classList.add("js");
   }, []);
   const getLayout = Component.getLayout ?? ((page) => page);
   return getLayout(
@@ -42,7 +43,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <style jsx global>{`
         html {
           font-family: ${noirPro.style.fontFamily};
-          font-weight: 300
+          font-weight: 300;
         }
         button,
         input,
@@ -56,4 +57,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <Script defer src="https://unpkg.com/taos@1.0.5/dist/taos.js" />
     </>
   );
-}
+};
+
+export default appWithTranslation(App)

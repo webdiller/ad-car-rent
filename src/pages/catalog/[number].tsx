@@ -7,20 +7,40 @@ import { CarProps } from "@/shared/types";
 import CarDetails from "@/widgets/CarDetails";
 import { DefaultLayout } from "@/widgets/Layouts/DefaultLayout";
 
+interface PagePath {
+  params: {
+    number: string;
+  };
+  locale?: string;
+}
+
 interface GetStaticPropsParams extends ParsedUrlQuery {
   number: string;
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const paths = cars.map((car) => ({ params: { number: `${car.number}` } }));
+export const getStaticPaths: GetStaticPaths = ({ defaultLocale, locales }) => {
+  const paths: PagePath[] = [];
+  for (const locale of locales as string[]) {
+    const mathLocale = defaultLocale === locale
+    for (let index = 0; index < cars.length; index++) {
+      const car = cars[index]
+      const path: PagePath = {
+        params: {number: `${car.number}`},
+        locale
+      }
+      if (mathLocale) delete path.locale
+      paths.push(path)
+    }
+  }
+  
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = (ctx) => {
-  const { number } = ctx.params as GetStaticPropsParams;
+export const getStaticProps: GetStaticProps = ({ locale, locales, params, defaultLocale }) => {
+  const { number } = params as GetStaticPropsParams;
 
   const matchCar = cars.find((car) => car.number === parseInt(number));
   return {
@@ -33,8 +53,8 @@ interface PageProps {
   car: CarProps;
 }
 
-const Page: NextPageWithLayout<PageProps> = ({car}) => {
-  return <CarDetails car={car} />;
+const Page: NextPageWithLayout<PageProps> = ({ car }) => {
+  return <CarDetails car={car} />
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {

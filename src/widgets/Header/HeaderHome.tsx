@@ -1,5 +1,7 @@
 "use client";
+import NavigationLocale from "@/shared/ui/NavigationLocale";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useSpring, animated } from "react-spring";
 
@@ -31,10 +33,11 @@ const HeaderHome: FC<ComponentProps> = () => {
                 delay: 100,
               })}
             >
-              <Link href="/">+7 999 999 99 99</Link>
+              <NavigationLocale />
             </animated.div>
           </div>
         </div>
+
         <div className="border-b-[1px] border-[#bfa37c]/20"></div>
 
         <nav className="container flex items-center space-x-4 bg-transparent py-2">

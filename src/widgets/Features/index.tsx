@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React, { FC } from "react";
 import { useSpring, animated } from "react-spring";
 import { useInView } from "react-intersection-observer";
@@ -6,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 interface ComponentProps {}
 
 const Features: FC<ComponentProps> = () => {
+  
   const [rootRef, rootRefInView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
   });
