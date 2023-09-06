@@ -8,10 +8,8 @@ import { useSpring, animated } from "react-spring";
 interface ComponentProps {}
 
 const HeaderBakground: FC<ComponentProps> = () => {
-  const { t: translate, lang } = useTranslation("header");
-  const home = translate("home");
-  const cars = translate("cars");
-  const about = translate("about");
+  const { t } = useTranslation("header");
+
   return (
     <>
       <header className="bg-zinc-900 text-white">
@@ -53,7 +51,7 @@ const HeaderBakground: FC<ComponentProps> = () => {
               delay: 50,
             })}
           >
-            <Link href="/">{home}</Link>
+            <Link href="/">{t("HOME")}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -63,7 +61,7 @@ const HeaderBakground: FC<ComponentProps> = () => {
               delay: 150,
             })}
           >
-            <Link href="/catalog">{cars}</Link>
+            <Link href="/catalog">{t("CARS")}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -73,7 +71,7 @@ const HeaderBakground: FC<ComponentProps> = () => {
               delay: 250,
             })}
           >
-            <Link href="/about">{about}</Link>
+            <Link href="/about">{t("ABOUT")}</Link>
           </animated.div>
         </nav>
       </header>

@@ -1,13 +1,13 @@
 import clsx from "clsx";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import flagRU from "@/public/images/flag-ru.svg";
 import flagEN from "@/public/images/flag-gb.svg";
 
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import useTranslation from "next-translate/useTranslation";
 
 interface ComponentProps {
   classNames?: string;
@@ -16,16 +16,11 @@ interface ComponentProps {
 const NavigationLocale = ({ classNames }: ComponentProps) => {
   const router = useRouter();
   const { locales, locale, asPath } = router;
-  const [currentLang, currentLangSet] = useState<"Язык" | "Language">("Язык");
+  const { t } = useTranslation("common");
 
   const onLanguageChange = (localeArgs: string) => async (e: React.MouseEvent<HTMLButtonElement>) => {
     router.push(asPath, undefined, { locale: localeArgs });
   };
-
-  useEffect(() => {
-    if (locale === "ru") currentLangSet("Language");
-    if (locale === "en") currentLangSet("Язык");
-  }, [router]);
 
   if (!locales || locales.length === 0) return null;
 
@@ -34,7 +29,7 @@ const NavigationLocale = ({ classNames }: ComponentProps) => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            {currentLang}
+            {t("LANGUAGE")}
             <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100" aria-hidden="true" />
           </Menu.Button>
         </div>

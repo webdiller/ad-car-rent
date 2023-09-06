@@ -1,0 +1,30 @@
+{
+  "TITLE": "Our Main Advantages",
+  "SUBTITLE": "Leadership in Elite Car Rental",
+  "LIST": [
+    {
+      "TITLE": "Exclusive selection of cars",
+      "DESCRIPTION": "Our cars represent the most prestigious brands so that you always feel special."
+    },
+    {
+      "TITLE": "Excellent quality of service",
+      "DESCRIPTION": "We guarantee unprecedented service and care for your comfort at every stage of the journey."
+    },
+    {
+      "TITLE": "Flexible rental system",
+      "DESCRIPTION": "Our rental conditions are adapted to your needs, providing maximum convenience."
+    },
+    {
+      "TITLE": "Transparent pricing policy",
+      "DESCRIPTION": "No hidden fees: with us you always know how much your unique car adventure costs."
+    },
+    {
+      "TITLE": "Road safety",
+      "DESCRIPTION": "Our cars undergo regular maintenance, guaranteeing you a safe and reliable journey."
+    },
+    {
+      "TITLE": "Personal approach to each client",
+      "DESCRIPTION": "We take care of your wishes so that your trip becomes a unique art."
+    }
+  ]
+}

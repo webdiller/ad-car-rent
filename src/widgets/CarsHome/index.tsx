@@ -5,11 +5,12 @@ import { useSpring, animated } from "react-spring";
 import { useInView } from "react-intersection-observer";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import useTranslation from "next-translate/useTranslation";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
 }
 
-const AnimatedListItem = ({ delay, title, description, images, number }: CarPropsWithAnimation) => {
+const AnimatedListItem = ({ delay, title, description, images, number, t, tCommon }: CarPropsWithAnimation) => {
   const { locale } = useRouter();
   const [ref, inView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
@@ -30,12 +31,12 @@ const AnimatedListItem = ({ delay, title, description, images, number }: CarProp
             <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100">
               <p className="text-[24px]">4X4</p>
               <p className="text-[16px]">
-                <span className="mr-2">От</span>
+                <span className="mr-2">{t("FROM")}</span>
                 <span className="mr-[1px] text-[24px] text-[#bfa37c]">1000</span>
-                <span className="align-super text-[20px] text-[#bfa37c]">₽</span>
+                <span className="align-super text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>
               </p>
               <p className="line-clamp-5 text-gray-300">
-                <span className="font-bold">{title}</span> {description}
+                <span className="font-bold">{title}</span> {t(description)}
               </p>
             </div>
           </div>
@@ -49,6 +50,8 @@ const AnimatedListItem = ({ delay, title, description, images, number }: CarProp
 };
 
 const CarsHome = () => {
+  const { t } = useTranslation("carsHome");
+  const { t: tCommon } = useTranslation("common");
   const animationTitle = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -67,19 +70,19 @@ const CarsHome = () => {
     <div className="container py-[50px] sm:py-[100px]">
       <div data-taos-offset="0" className="mb-10 grid gap-2 text-left text-white duration-[1000ms] sm:gap-4 md:mb-20 md:gap-10 lg:grid-cols-2">
         <animated.p style={animationTitle} className="text-[30px] leading-none md:text-[50px]">
-          Автомобили <span className="text-[#bfa37c]">элитного</span> класса для Вашего неповторимого стиля
+          {t("TITLE_1")} <span className="text-[#bfa37c]">{t("TITLE_2")}</span> {t("TITLE_3")}
         </animated.p>
         <animated.div style={animationDescription} className="space-y-4 text-[18px]">
-          <p className="text-[#a6a6a6] md:text-[20px]">Выбирайте непревзойденную роскошь, передовые технологии и непередаваемый комфорт.</p>
+          <p className="text-[#a6a6a6] md:text-[20px]">{t("SUBTITLE")}</p>
           <a className="inline-block text-[#bfa37c]" href="tel:0">
-            <span>Горячая линия: +1234 5678 901</span>
+            <span>{t("HOTLINE")}: +1234 5678 901</span>
           </a>
         </animated.div>
       </div>
       <div data-taos-offset="100" className="aos:opacity-0 grid gap-5 gap-y-10 duration-300 sm:grid-cols-2 lg:grid-cols-3">
         {cars.map(({ number, title, images, description }, index) => {
           const delay = index * 200;
-          return <AnimatedListItem images={images} number={number} key={index} description={description} title={title} delay={delay} />;
+          return <AnimatedListItem t={t} tCommon={tCommon} images={images} number={number} key={index} description={description} title={title} delay={delay} />;
         })}
       </div>
     </div>

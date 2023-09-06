@@ -8,10 +8,8 @@ import useTranslation from "next-translate/useTranslation";
 interface ComponentProps {}
 
 const HeaderHome: FC<ComponentProps> = () => {
-  const { t: translate, lang } = useTranslation("header");
-  const home = translate("home");
-  const cars = translate("cars");
-  const about = translate("about");
+  const { t } = useTranslation("header");
+
   return (
     <>
       <header className="absolute left-0 top-0 z-10 w-full text-white">
@@ -53,7 +51,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 50,
             })}
           >
-            <Link href="/">{home}</Link>
+            <Link href="/">{t("HOME")}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -63,7 +61,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 150,
             })}
           >
-            <Link href="/catalog">{cars}</Link>
+            <Link href="/catalog">{t("CARS")}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -73,7 +71,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 250,
             })}
           >
-            <Link href="/about">{about}</Link>
+            <Link href="/about">{t("ABOUT")}</Link>
           </animated.div>
         </nav>
       </header>

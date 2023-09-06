@@ -1,10 +1,12 @@
 import React, { FC } from "react";
 import { useSpring, animated } from "react-spring";
 import { useInView } from "react-intersection-observer";
+import useTranslation from "next-translate/useTranslation";
 
 interface ComponentProps {}
 
 const Features: FC<ComponentProps> = () => {
+  const { t } = useTranslation("features");
   const [rootRef, rootRefInView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
   });
@@ -22,38 +24,31 @@ const Features: FC<ComponentProps> = () => {
   }); 
 
   const featuresData = [
-    { title: "Эксклюзивный выбор автомобилей", description: "Наши автомобили представляют самые престижные марки, чтобы вы всегда чувствовали себя особенным." },
-
-    { title: "Превосходное качество обслуживания", description: "Мы гарантируем беспрецедентный сервис и заботу о вашем комфорте на каждом этапе путешествия." },
-    {
-      title: "Гибкая система аренды",
-      description: "Наши условия проката адаптированы под ваши потребности, обеспечивая максимальное удобство.",
-    },
-
-    { title: "Прозрачная ценовая политика", description: "Без скрытых платежей: у нас вы всегда знаете, сколько стоит ваше уникальное автомобильное приключение." },
-
-    { title: "Безопасность на дороге", description: "Наши автомобили проходят регулярное обслуживание, гарантируя вам безопасное и надежное путешествие." },
-
-    { title: "Личный подход к каждому клиенту", description: "Мы заботимся о ваших пожеланиях, чтобы ваша поездка стала неповторимым искусством." },
+    { title: "LIST.0.TITLE", description: "LIST.0.DESCRIPTION" },
+    { title: "LIST.1.TITLE", description: "LIST.1.DESCRIPTION" },
+    { title: "LIST.2.TITLE", description: "LIST.2.DESCRIPTION" },
+    { title: "LIST.3.TITLE", description: "LIST.3.DESCRIPTION" },
+    { title: "LIST.4.TITLE", description: "LIST.4.DESCRIPTION" },
+    { title: "LIST.5.TITLE", description: "LIST.5.DESCRIPTION" },
   ];
   return (
     <div className="container py-[50px] sm:py-[100px]">
 
       <div ref={rootRef} className="mb-10 border-b-[1px] border-white/10 pb-4 text-left text-white">
         <animated.p style={animationTitle} className="text-[30px] md:text-[50px]">
-          Наши Основные Преимущества
+          {t('TITLE')}
         </animated.p>
         <animated.p style={animationSubtitle} className="text-[#a6a6a6] md:text-[20px]">
-          Лидерство в Элитном Прокате Автомобилей
+          {t('SUBTITLE')}
         </animated.p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        {featuresData.map(({ title, description }, indx) => {
+        {featuresData.map(({ title, description }) => {
           return (
             <div key={title} className={`space-y-2 text-white`}>
-              <p className="text-lg sm:text-2xl">{title}</p>
-              <p className="text-[#a6a6a6] sm:text-[18px]">{description}</p>
+              <p className="text-lg sm:text-2xl">{t(title)}</p>
+              <p className="text-[#a6a6a6] sm:text-[18px]">{t(description)}</p>
             </div>
           );
         })}

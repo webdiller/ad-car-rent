@@ -5,11 +5,15 @@ import Link from "next/link";
 import React, { FC, useState, Fragment } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useSpring, animated } from "react-spring";
+import useTranslation from "next-translate/useTranslation";
 interface ComponentProps {
   car: CarProps;
 }
 
 const CarDetails: FC<ComponentProps> = ({ car }) => {
+  const { t } = useTranslation("carDetails");
+  const { t: tCars } = useTranslation("carsHome");
+  const { t: tCommon } = useTranslation("common");
   const mainImageUrl = car.images[0];
   let [isOpenRus, setIsOpenRus] = useState(false);
   let [isOpenEng, setIsOpenEng] = useState(false);
@@ -89,19 +93,19 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
 
             {/* ITEM */}
             <animated.div style={animationPrices}>
-              <p className="text-[22px] font-normal">Цены:</p>
+              <p className="text-[22px] font-normal">{t("TITLE_PRICES")}</p>
               <div className="space-y-1">
                 <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">1.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">₽</span>/ час
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("HOUR")}
                 </p>
                 <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">10.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">₽</span>/ сутки
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("DAY")}
                 </p>
                 <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">100.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">₽</span>/ месяц
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("MONTH")}
                 </p>
               </div>
             </animated.div>
@@ -110,22 +114,22 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
             <animated.div style={animationDescription}>
               <p className="text-[20px]">
                 <span className="text-[30px] font-normal">{car.title} </span>
-                {car.description}
+                {tCars(car.description)}
               </p>
             </animated.div>
 
             <animated.div style={animationButton}>
               <Link href="/catalog" className="inline-flex items-center justify-center border-[1px] border-[#bfa37c] bg-[#bfa37c]/10 px-4 py-2 text-lg text-black">
-                Заказать {car.title}
+                {t("ORDER")} {car.title}
               </Link>
             </animated.div>
 
             <animated.div style={animationButton2}>
               <button onClick={togleModalRus} className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
-                Правило пользования автомобилем на Русском
+                {t("BUTTON_RULES_RUSSIAN")}
               </button>
               <button onClick={togleModalEng} className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
-                Правило пользования автомобилем на Английском (English)
+                {t("BUTTON_RULES_ENGLISH")}
               </button>
             </animated.div>
           </div>
@@ -155,7 +159,7 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
         </div>
       </PhotoProvider>
 
-      {/* RUSSINA */}
+      {/* RUSSIAN */}
       <Transition appear show={isOpenRus} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={togleModalRus}>
           <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">

@@ -1,19 +1,19 @@
 {
-  "features": [
+  "SLIDES": [
     {
-      "title": "Car Rental",
-      "description": "Your path to comfort and freedom!",
-      "actionBtn": "Visit catalog"
+      "TITLE": "Car Rental",
+      "DESCRIPTION": "Your path to comfort and freedom!",
+      "BUTTON": "Visit catalog"
     },
     {
-      "title": "Exceptional Luxury",
-      "description": "Turn your dreams into reality with our collection of elite cars.",
-      "actionBtn": "Visit catalog"
+      "TITLE": "Exceptional Luxury",
+      "DESCRIPTION": "Turn your dreams into reality with our collection of elite cars.",
+      "BUTTON": "Visit catalog"
     },
     {
-      "title": "Flawless Elegance",
-      "description": "Our cars offer outstanding style and unparalleled comfort.",
-      "actionBtn": "Visit catalog"
+      "TITLE": "Flawless Elegance",
+      "DESCRIPTION": "Our cars offer outstanding style and unparalleled comfort.",
+      "BUTTON": "Visit catalog"
     }
   ]
 }

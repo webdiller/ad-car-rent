@@ -3,9 +3,10 @@
   "defaultLocale": "ru",
   "localeDetection": false,
   "pages": {
-    "*": ["header"],
-    "/": ["header", "welcome"],
+    "*": ["header", "footer", "common"],
+    "/": ["header", "welcome", "features", "saveMoney", "carsHome"],
     "/about": ["about"],
-    "/catalog/[number]": ["catalog"]
+    "/catalog": ["carsHome"],
+    "/catalog/[number]": ["carDetails", "carsHome"]
   }
 }
