@@ -6,8 +6,12 @@ import { useInView } from "react-intersection-observer";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
+import {Translate} from "next-translate";
+import {ReactNode} from "react";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
+  t: Translate;
+  tCommon: Translate;
 }
 
 const AnimatedListItem = ({ delay, title, description, images, number, t, tCommon }: CarPropsWithAnimation) => {
@@ -70,7 +74,7 @@ const CarsHome = () => {
     <div className="container py-[50px] sm:py-[100px]">
       <div data-taos-offset="0" className="mb-10 grid gap-2 text-left text-white duration-[1000ms] sm:gap-4 md:mb-20 md:gap-10 lg:grid-cols-2">
         <animated.p style={animationTitle} className="text-[30px] leading-none md:text-[50px]">
-          {t("TITLE_1")} <span className="text-[#bfa37c]">{t("TITLE_2")}</span> {t("TITLE_3")}
+          {t("TITLE_1") as ReactNode} <span className="text-[#bfa37c]">{t("TITLE_2")}</span> {t("TITLE_3") as ReactNode}
         </animated.p>
         <animated.div style={animationDescription} className="space-y-4 text-[18px]">
           <p className="text-[#a6a6a6] md:text-[20px]">{t("SUBTITLE")}</p>
