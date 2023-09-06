@@ -1,13 +1,17 @@
 "use client";
 import NavigationLocale from "@/shared/ui/NavigationLocale";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useSpring, animated } from "react-spring";
+import useTranslation from "next-translate/useTranslation";
 
 interface ComponentProps {}
 
 const HeaderHome: FC<ComponentProps> = () => {
+  const { t: translate, lang } = useTranslation("header");
+  const home = translate("home");
+  const cars = translate("cars");
+  const about = translate("about");
   return (
     <>
       <header className="absolute left-0 top-0 z-10 w-full text-white">
@@ -49,7 +53,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 50,
             })}
           >
-            <Link href="/">Главная</Link>
+            <Link href="/">{home}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -59,7 +63,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 150,
             })}
           >
-            <Link href="/catalog">Автомобили</Link>
+            <Link href="/catalog">{cars}</Link>
           </animated.div>
           <animated.div
             style={useSpring({
@@ -69,7 +73,7 @@ const HeaderHome: FC<ComponentProps> = () => {
               delay: 250,
             })}
           >
-            <Link href="/about">О нас</Link>
+            <Link href="/about">{about}</Link>
           </animated.div>
         </nav>
       </header>

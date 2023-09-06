@@ -1,14 +1,12 @@
 "use client";
 import NavigationLocale from "@/shared/ui/NavigationLocale";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useSpring, animated } from "react-spring";
 
 interface ComponentProps {}
 
 const HeaderBakground: FC<ComponentProps> = () => {
-  const router = useRouter();
   return (
     <>
       <header className="bg-zinc-900 text-white">

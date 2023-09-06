@@ -7,10 +7,11 @@ import WelcomeLoader from "@/widgets/welcome/WelcomeLoader";
 const WelcomeSlider = dynamic(import("@/widgets/welcome/WelcomeSlider"), {
   loading: () => <WelcomeLoader />,
 });
-
-interface ComponentProps {}
+interface ComponentProps {
+}
 
 const HomePage: FC<ComponentProps> = () => {
+
   return (
     <main className="bg-zinc-900">
       <WelcomeSlider />

@@ -5,7 +5,6 @@ import { useInView } from "react-intersection-observer";
 interface ComponentProps {}
 
 const Features: FC<ComponentProps> = () => {
-  
   const [rootRef, rootRefInView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
   });
@@ -20,7 +19,7 @@ const Features: FC<ComponentProps> = () => {
     to: { opacity: rootRefInView ? 1 : 0 },
     config: { duration: 300 },
     delay: 300,
-  });
+  }); 
 
   const featuresData = [
     { title: "Эксклюзивный выбор автомобилей", description: "Наши автомобили представляют самые престижные марки, чтобы вы всегда чувствовали себя особенным." },
@@ -39,6 +38,7 @@ const Features: FC<ComponentProps> = () => {
   ];
   return (
     <div className="container py-[50px] sm:py-[100px]">
+
       <div ref={rootRef} className="mb-10 border-b-[1px] border-white/10 pb-4 text-left text-white">
         <animated.p style={animationTitle} className="text-[30px] md:text-[50px]">
           Наши Основные Преимущества

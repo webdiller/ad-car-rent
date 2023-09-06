@@ -3,8 +3,6 @@ import { ReactElement, ReactNode, useEffect } from "react";
 import { NextPage } from "next";
 import Script from "next/script";
 import localFont from "next/font/local";
-import { appWithTranslation } from "next-i18next";
-
 import "react-photo-view/dist/react-photo-view.css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
@@ -59,4 +57,4 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   );
 };
 
-export default appWithTranslation(App)
+export default App

@@ -1,0 +1,11 @@
+{
+  "locales": ["ru", "en"],
+  "defaultLocale": "ru",
+  "localeDetection": false,
+  "pages": {
+    "*": ["common"],
+    "/": ["header", "welcome"],
+    "/about": ["about"],
+    "/catalog/[number]": ["catalog"]
+  }
+}

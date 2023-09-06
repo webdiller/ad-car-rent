@@ -3,11 +3,14 @@ import { CarProps } from "@/shared/types";
 import clsx from "clsx";
 import { useSpring, animated } from "react-spring";
 import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/router";
+import Link from "next/link";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
 }
 
 const AnimatedListItem = ({ delay, title, description, images, number }: CarPropsWithAnimation) => {
+  const { locale } = useRouter();
   const [ref, inView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
   });
@@ -20,7 +23,7 @@ const AnimatedListItem = ({ delay, title, description, images, number }: CarProp
 
   return (
     <animated.div ref={ref} style={animation}>
-      <a key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white transition-all duration-[1000ms]")}>
+      <Link locale={locale} key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white transition-all duration-[1000ms]")}>
         <div className="relative overflow-hidden pb-[100%]">
           <img className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100" src={`/images/cars/${images[0]}`} alt="" />
           <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/60 group-hover:opacity-100">
@@ -40,7 +43,7 @@ const AnimatedListItem = ({ delay, title, description, images, number }: CarProp
         <div>
           <p className="text-center text-[18px] transition-all duration-300 group-hover:text-[#bfa37c] sm:text-[22px]">{title}</p>
         </div>
-      </a>
+      </Link>
     </animated.div>
   );
 };
