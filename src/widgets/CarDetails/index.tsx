@@ -67,7 +67,7 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
   });
 
   const animationButton2 = useSpring({
-    from: { opacity: 0 },
+    from: { opacity: 0, display: "flex", flexDirection: "column" },
     to: { opacity: 1 },
     config: { duration: 300 },
     delay: 650,

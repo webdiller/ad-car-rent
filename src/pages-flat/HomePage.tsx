@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import WelcomeLoader from "@/widgets/welcome/WelcomeLoader";
 const WelcomeSlider = dynamic(import("@/widgets/welcome/WelcomeSlider"), {
   loading: () => <WelcomeLoader />,
+    ssr: false,
 });
 interface ComponentProps {
 }
