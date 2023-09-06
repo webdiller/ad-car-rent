@@ -45,16 +45,18 @@ export const getStaticProps: GetStaticProps = ({ locale, locales, params, defaul
   const matchCar = cars.find((car) => car.number === parseInt(number));
   return {
     props: {
+      currentLocale: locale,
       car: matchCar,
     },
   };
 };
 interface PageProps {
   car: CarProps;
+  currentLocale: "ru" | "en"
 }
 
-const Page: NextPageWithLayout<PageProps> = ({ car }) => {
-  return <CarDetails car={car} />
+const Page: NextPageWithLayout<PageProps> = ({ car, currentLocale }) => {
+  return <CarDetails car={car} currentLocale={currentLocale}/>
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {

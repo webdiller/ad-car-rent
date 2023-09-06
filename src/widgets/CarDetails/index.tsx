@@ -8,12 +8,14 @@ import { useSpring, animated } from "react-spring";
 import useTranslation from "next-translate/useTranslation";
 interface ComponentProps {
   car: CarProps;
+  currentLocale: "ru" | "en";
 }
 
-const CarDetails: FC<ComponentProps> = ({ car }) => {
+const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
   const { t } = useTranslation("carDetails");
   const { t: tCars } = useTranslation("carsHome");
   const { t: tCommon } = useTranslation("common");
+
   const mainImageUrl = car.images[0];
   let [isOpenRus, setIsOpenRus] = useState(false);
   let [isOpenEng, setIsOpenEng] = useState(false);
@@ -131,6 +133,12 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
               <button onClick={togleModalEng} className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
                 {t("BUTTON_RULES_ENGLISH")}
               </button>
+              <a target="_blank" download href={`/docs/doc-rent-${currentLocale}.docx`} className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
+                {t("BUTTON_RULES_DOCUMENT_RENT")} 
+              </a>
+              <a target="_blank" download href="/docs/doc-operating-rules.docx" className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
+                {t("BUTTON_RULES_DOCUMENT_OPERATING")}
+              </a>
             </animated.div>
           </div>
 
@@ -179,7 +187,7 @@ const CarDetails: FC<ComponentProps> = ({ car }) => {
               >
                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title as="h3" className="text-2xl font-medium leading-tight text-gray-900">
-                    Правило пользования автомобилем <span className="font-bold">{car.title}</span>
+                    Правила пользования автомобилем <span className="font-bold">{car.title}</span>
                   </Dialog.Title>
                   <ul className="mt-2 list-inside list-decimal space-y-1 text-gray-700 sm:text-lg">
                     <li>Нельзя превышать скоростной режим.</li>

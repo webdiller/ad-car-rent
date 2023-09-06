@@ -2,5 +2,7 @@
   "TITLE_PRICES": "Prices:",
   "ORDER": "Order",
   "BUTTON_RULES_RUSSIAN": "Rules for using a car in Russian",
-  "BUTTON_RULES_ENGLISH": "Rules for using the car in English"
+  "BUTTON_RULES_ENGLISH": "Rules for using the car in English",
+  "BUTTON_RULES_DOCUMENT_RENT": "Download Car rental agreement document",
+  "BUTTON_RULES_DOCUMENT_OPERATING": "Download Document rules for operation the car (Russian and English)"
 }
