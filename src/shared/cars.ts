@@ -15,6 +15,14 @@ export const cars: CarProps[] = [
       "porsche-cayenne/porsche-cayenne-8.jpg",
     ],
     description: "CARS.0.DESCRIPTION",
+    prices: {
+      perOneDay: {
+        price: 170,
+      },
+      perTenDays: {
+        price: 150,
+      },
+    },
   },
   {
     number: 2,
@@ -31,6 +39,14 @@ export const cars: CarProps[] = [
       "chevrolet-camaro/chevrolet-camaro-9.jpg",
     ],
     description: "CARS.1.DESCRIPTION",
+    prices: {
+      perOneDay: {
+        price: 100,
+      },
+      perTenDays: {
+        price: 90,
+      },
+    },
   },
   {
     number: 3,
@@ -43,6 +59,14 @@ export const cars: CarProps[] = [
       "subaru-forester/subaru-forester-5.jpg",
     ],
     description: "CARS.2.DESCRIPTION",
+    prices: {
+      perOneDay: {
+        price: 70,
+      },
+      perTenDays: {
+        price: 65,
+      },
+    },
   },
   {
     number: 4,
@@ -57,6 +81,14 @@ export const cars: CarProps[] = [
       "lexus-hs250h/lexus-hs250h-7.jpg",
     ],
     description: "CARS.3.DESCRIPTION",
+    prices: {
+      perOneDay: {
+        price: 70,
+      },
+      perTenDays: {
+        price: 60,
+      },
+    },
   },
   {
     number: 5,
@@ -71,5 +103,13 @@ export const cars: CarProps[] = [
       "hyundai-sonata/hyundai-sonata-7.jpg",
     ],
     description: "CARS.4.DESCRIPTION",
+    prices: {
+      perOneDay: {
+        price: 50,
+      },
+      perTenDays: {
+        price: 45,
+      },
+    },
   },
 ];

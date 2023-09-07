@@ -1,6 +1,6 @@
 {
   "LANGUAGE": "Язык",
-  "CURRENCY": "₽",
+  "CURRENCY_DOLLAR": "$",
   "HOUR": "час",
   "DAY": "сутки",
   "MONTH": "месяц"

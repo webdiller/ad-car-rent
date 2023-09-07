@@ -1,5 +1,7 @@
 {
   "TITLE_PRICES": "Цены:",
+  "ITEM_TITLE_PRICE_PER_ONE_DAY": "На 1 - 3 дня",
+  "ITEM_TITLE_PRICE_PER_TEN_DAY": "На 5 - 10 дней",
   "ORDER": "Заказать",
   "BUTTON_RULES_RUSSIAN": "Правила пользования автомобилем на Русском",
   "BUTTON_RULES_ENGLISH": "Правила пользования автомобилем на Английском",

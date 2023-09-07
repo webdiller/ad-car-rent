@@ -1,5 +1,7 @@
 {
   "TITLE_PRICES": "Prices:",
+  "ITEM_TITLE_PRICE_PER_ONE_DAY": "For 1 - 3 days",
+  "ITEM_TITLE_PRICE_PER_TEN_DAY": "For 5 - 10 days",
   "ORDER": "Order",
   "BUTTON_RULES_RUSSIAN": "Rules for using a car in Russian",
   "BUTTON_RULES_ENGLISH": "Rules for using the car in English",

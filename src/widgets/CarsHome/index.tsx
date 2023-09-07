@@ -15,9 +15,10 @@ interface CarPropsWithAnimation extends CarProps {
   tCommon: Translate;
 }
 
-const AnimatedListItem = ({ delay, title, description, images, number, t, tCommon }: CarPropsWithAnimation) => {
+const AnimatedListItem = ({ delay, title, description, images, number, prices, t, tCommon }: CarPropsWithAnimation) => {
   const isWide = useMedia("(min-width: 640px)", true);
   const { locale } = useRouter();
+
   const [ref, inView] = useInView({
     triggerOnce: false, // Trigger the animation only once when the element enters the viewport.
     initialInView: false,
@@ -38,6 +39,7 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
       }, 2000);
     },
   });
+  
   const animation = useSpring({
     from: {
       opacity: 0,
@@ -64,19 +66,21 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
             <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100  group-focus:translate-y-0 group-focus:opacity-100">
               {/* TODO: Add feature */}
               {/* <p className="text-[24px]">4X4</p> */}
-              <p className="line-clamp-5 text-gray-300">
-                <span className="font-bold">{title}</span> {t(description)}
+              <p className="line-clamp-5 text-gray-300 sm:text-[20px]">
+                <span className="font-bold sm:text-[20px]">{title}</span> {t(description)}
               </p>
-              <p className="text-[16px]">
+
+              {/* TODO: Add prices */}
+              {/* <p className="text-[16px]">
                 <span className="mr-2">{t("FROM")}</span>
                 <span className="mr-[1px] text-[24px] text-[#bfa37c]">1000</span>
-                <span className="align-super text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>
-              </p>
+                <span className="align-super text-[20px] text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>
+              </p> */}
             </div>
           </div>
         </div>
         <div>
-          <p className="text-center text-[18px] transition-all duration-300 group-hover:text-[#bfa37c] sm:text-[22px]">{title}</p>
+          <p className="text-center text-[18px] transition-all duration-300 group-hover:text-[#bfa37c] sm:text-[22px] lg:text-[30px]">{title}</p>
         </div>
       </Link>
     </animated.div>
@@ -114,10 +118,10 @@ const CarsHome = () => {
         </animated.div>
       </div>
       <div className="aos:opacity-0 grid gap-5 gap-y-10 duration-300 sm:grid-cols-2 lg:grid-cols-3">
-        {cars.map(({ number, title, images, description }, index) => {
+        {cars.map(({ number, title, images, description, prices }, index) => {
           const startIndx = index + 1;
           const delay = startIndx * 200;
-          return <AnimatedListItem t={t} tCommon={tCommon} images={images} number={number} key={index} description={description} title={title} delay={delay} />;
+          return <AnimatedListItem t={t} tCommon={tCommon} prices={prices} images={images} number={number} key={index} description={description} title={title} delay={delay} />;
         })}
       </div>
     </div>

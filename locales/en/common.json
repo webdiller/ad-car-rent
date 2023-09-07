@@ -1,6 +1,6 @@
 {
   "LANGUAGE": "Language",
-  "CURRENCY": "$",
+  "CURRENCY_DOLLAR": "$",
   "HOUR": "hour",
   "DAY": "day",
   "MONTH": "month"

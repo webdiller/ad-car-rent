@@ -79,7 +79,6 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
     <>
       <PhotoProvider>
         <div className="container flex flex-col gap-6 py-[30px] sm:py-[50px] md:flex-row-reverse md:gap-10">
-
           {/* CONTENT */}
           <div className="space-y-3 py-5 md:flex-1">
             {/* ITEM */}
@@ -100,24 +99,33 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
             </animated.div> */}
 
             {/* ITEM */}
-            <animated.div style={animationPrices}>
+            <animated.div className="!my-10" style={animationPrices}>
               <p className="text-[22px] font-normal">{t("TITLE_PRICES")}</p>
               <div className="space-y-1">
                 <p className="text-[16px]">
+                  <span className="mr-2 text-[20px] font-medium">{t("ITEM_TITLE_PRICE_PER_ONE_DAY")}:</span>
+                  <span className="mr-[1px] text-[24px] text-[#bfa37c]">{car.prices.perOneDay.price}</span>
+                  <span className="text-[20px] font-normal leading-none text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>
+                </p>
+                <p className="text-[16px]">
+                  <span className="mr-2 text-[20px] font-medium">{t("ITEM_TITLE_PRICE_PER_TEN_DAY")}:</span>
+                  <span className="mr-[1px] text-[24px] text-[#bfa37c]">{car.prices.perTenDays.price}</span>
+                  <span className="text-[20px] font-normal leading-none text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>
+                </p>
+                {/* <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">1.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("HOUR")}
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>/ {tCommon("HOUR")}
                 </p>
                 <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">10.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("DAY")}
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>/ {tCommon("DAY")}
                 </p>
                 <p className="text-[16px]">
                   <span className="mr-[1px] text-[24px] text-[#bfa37c]">100.000</span>
-                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>/ {tCommon("MONTH")}
-                </p>
+                  <span className="text-[20px] text-[#bfa37c]">{tCommon("CURRENCY_DOLLAR")}</span>/ {tCommon("MONTH")}
+                </p> */}
               </div>
             </animated.div>
-
 
             <animated.div style={animationButton}>
               <Link href="/catalog" className="inline-flex items-center justify-center border-[1px] border-[#bfa37c] bg-[#bfa37c]/10 px-4 py-2 text-lg text-black">
@@ -133,7 +141,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
                 {t("BUTTON_RULES_ENGLISH")}
               </button>
               <a target="_blank" download href={`/docs/doc-rent-${currentLocale}.docx`} className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
-                {t("BUTTON_RULES_DOCUMENT_RENT")} 
+                {t("BUTTON_RULES_DOCUMENT_RENT")}
               </a>
               <a target="_blank" download href="/docs/doc-operating-rules.docx" className="text-left text-lg text-black underline underline-offset-2 transition-all hover:no-underline">
                 {t("BUTTON_RULES_DOCUMENT_OPERATING")}
@@ -142,7 +150,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
           </div>
 
           {/* MEDIA */}
-          <animated.div style={animationImages} className="md:self-start md:min-w-[55%]">
+          <animated.div style={animationImages} className="md:min-w-[55%] md:self-start">
             <div className="relative mb-2 cursor-pointer overflow-hidden pb-[100%]">
               <PhotoView src={`/images/cars/${mainImageUrl}`}>
                 <img className="absolute inset-0 h-full w-full object-cover" src={`/images/cars/${mainImageUrl}`} alt="" />
