@@ -79,6 +79,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
     <>
       <PhotoProvider>
         <div className="container flex flex-col gap-6 py-[30px] sm:py-[50px] md:flex-row-reverse md:gap-10">
+
           {/* CONTENT */}
           <div className="space-y-3 py-5 md:flex-1">
             {/* ITEM */}
@@ -141,8 +142,8 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
           </div>
 
           {/* MEDIA */}
-          <animated.div style={animationImages} className="md:flex-1 md:self-start">
-            <div className="relative mb-5 cursor-pointer overflow-hidden pb-[100%]">
+          <animated.div style={animationImages} className="md:self-start md:min-w-[55%]">
+            <div className="relative mb-2 cursor-pointer overflow-hidden pb-[100%]">
               <PhotoView src={`/images/cars/${mainImageUrl}`}>
                 <img className="absolute inset-0 h-full w-full object-cover" src={`/images/cars/${mainImageUrl}`} alt="" />
               </PhotoView>

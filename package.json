@@ -33,6 +33,7 @@
     "react-intl": "^6.4.4",
     "react-photo-view": "^1.2.3",
     "react-spring": "^9.7.2",
+    "react-use": "^17.4.0",
     "swiper": "^9.4.1",
     "tailwindcss": "3.3.3",
     "taos": "^1.0.5",

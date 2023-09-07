@@ -8,6 +8,7 @@ import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { Translate } from "next-translate";
 import { ReactNode } from "react";
+import { useMedia } from "react-use";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
   t: Translate;
@@ -15,10 +16,27 @@ interface CarPropsWithAnimation extends CarProps {
 }
 
 const AnimatedListItem = ({ delay, title, description, images, number, t, tCommon }: CarPropsWithAnimation) => {
+  const isWide = useMedia("(min-width: 640px)", true);
   const { locale } = useRouter();
   const [ref, inView] = useInView({
-    triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
-    initialInView: false
+    triggerOnce: false, // Trigger the animation only once when the element enters the viewport.
+    initialInView: false,
+    onChange: async (inView, entry) => {
+      const linkElement = entry.target.firstChild as HTMLAnchorElement | null;
+      
+      if (!linkElement || isWide) return;
+
+      setTimeout(() => {
+        if (linkElement && inView) {
+          linkElement.focus({
+            preventScroll: true,
+          });
+        }
+        if (linkElement && !inView) {
+          linkElement.blur();
+        }
+      }, 2000);
+    },
   });
   const animation = useSpring({
     from: {
@@ -35,11 +53,15 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
 
   return (
     <animated.div ref={ref} style={animation}>
-      <Link locale={locale} key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white transition-all duration-[1000ms]")}>
+      <Link locale={locale} key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white outline transition-all duration-[1000ms]")}>
         <div className="relative overflow-hidden pb-[150%]">
-          <img className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100" src={`/images/cars/${images[0]}`} alt="" />
-          <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/60 group-hover:opacity-100">
-            <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100">
+          <img
+            className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100 group-focus:scale-100"
+            src={`/images/cars/${images[0]}`}
+            alt=""
+          />
+          <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/60 group-hover:opacity-100 group-focus:bg-black/60 group-focus:opacity-100">
+            <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100  group-focus:translate-y-0 group-focus:opacity-100">
               {/* TODO: Add feature */}
               {/* <p className="text-[24px]">4X4</p> */}
               <p className="line-clamp-5 text-gray-300">
@@ -80,7 +102,7 @@ const CarsHome = () => {
 
   return (
     <div className="container py-[50px] sm:py-[100px]">
-      <div data-taos-offset="0" className="mb-10 grid gap-2 text-left text-white duration-[1000ms] sm:gap-4 md:mb-20 md:gap-10 lg:grid-cols-2">
+      <div className="mb-10 grid gap-2 text-left text-white duration-[1000ms] sm:gap-4 md:mb-20 md:gap-10 lg:grid-cols-2">
         <animated.p style={animationTitle} className="text-[30px] leading-none md:text-[50px]">
           {t("TITLE_1") as ReactNode} <span className="text-[#bfa37c]">{t("TITLE_2")}</span> {t("TITLE_3") as ReactNode}
         </animated.p>
@@ -91,7 +113,7 @@ const CarsHome = () => {
           </a>
         </animated.div>
       </div>
-      <div data-taos-offset="100" className="aos:opacity-0 grid gap-5 gap-y-10 duration-300 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="aos:opacity-0 grid gap-5 gap-y-10 duration-300 sm:grid-cols-2 lg:grid-cols-3">
         {cars.map(({ number, title, images, description }, index) => {
           const startIndx = index + 1;
           const delay = startIndx * 200;
