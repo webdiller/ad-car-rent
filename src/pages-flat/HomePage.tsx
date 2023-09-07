@@ -16,6 +16,7 @@ interface ComponentProps {
 }
 
 const HomePage: FC<ComponentProps> = ({ meta }) => {
+  
   return (
     <>
       <NextSeo title={meta.title} description={meta.description} />

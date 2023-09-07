@@ -9,6 +9,7 @@ import useTranslation from "next-translate/useTranslation";
 import { removePlusAndSpaces } from "@/shared/helpers/removePlusAndSpaces";
 import { contacts } from "@/shared/contacts";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
+import Image from "next/image";
 interface ComponentProps {
   car: CarProps;
   currentLocale: "ru" | "en";
@@ -22,9 +23,14 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
   const mainImageUrl = car.images[0];
   let [isOpenRus, setIsOpenRus] = useState(false);
   let [isOpenEng, setIsOpenEng] = useState(false);
+
+  const mainImageAltText = currentLocale === "ru" ? `Главное изображение ${car.title}` : `Main image of ${car.title}`;
+  const additionImageAltText = currentLocale === "ru" ? `Изображение ${car.title}` : `Addition image of ${car.title}`;
+
   function togleModalRus() {
     setIsOpenRus((prev) => !prev);
   }
+
   function togleModalEng() {
     setIsOpenEng((prev) => !prev);
   }
@@ -140,9 +146,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
                       d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
                     />
                   </svg>
-                  <span>
-                    {contacts.mainPhone}
-                  </span>
+                  <span>{contacts.mainPhone}</span>
                 </a>
                 <a
                   className="flex items-center space-x-2 text-[black]"
@@ -180,9 +184,16 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
 
           {/* MEDIA */}
           <animated.div style={animationImages} className="md:min-w-[55%] md:self-start">
-            <div className="relative mb-2 cursor-pointer overflow-hidden pb-[100%] ">
+            <div className="relative mb-2 cursor-pointer overflow-hidden pb-[100%]">
               <PhotoView src={`/images/cars/${mainImageUrl}`}>
-                <img className="absolute inset-0 h-full w-full object-cover" src={`/images/cars/${mainImageUrl}`} alt="" />
+                <Image
+                  quality={50}
+                  fill
+                  onLoadingComplete={(img) => img.classList.remove("animate-pulse")}
+                  className="absolute inset-0 h-full w-full object-cover object-bottom"
+                  src={`/images/cars/${mainImageUrl}`}
+                  alt={mainImageAltText}
+                />
               </PhotoView>
             </div>
 
@@ -192,7 +203,14 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
                   return (
                     <div key={indx} className="relative cursor-pointer overflow-hidden pb-[100%]">
                       <PhotoView src={`/images/cars/${url}`}>
-                        <img className="absolute inset-0 z-10 h-full w-full object-cover" src={`/images/cars/${url}`} alt="" />
+                        <Image
+                          quality={50}
+                          fill
+                          onLoadingComplete={(img) => img.classList.remove("animate-pulse")}
+                          className="absolute inset-0 z-10 h-full w-full object-cover object-bottom"
+                          src={`/images/cars/${url}`}
+                          alt={additionImageAltText}
+                        />
                       </PhotoView>
                     </div>
                   );

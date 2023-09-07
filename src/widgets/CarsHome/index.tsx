@@ -7,16 +7,19 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
 import { Translate } from "next-translate";
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import { useMedia } from "react-use";
 import { removePlusAndSpaces } from "@/shared/helpers/removePlusAndSpaces";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import { contacts } from "@/shared/contacts";
+import Image from "next/image";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
   t: Translate;
   tCommon: Translate;
 }
+
+interface ComponentProps {}
 
 const AnimatedListItem = ({ delay, title, description, images, number, prices, t, tCommon }: CarPropsWithAnimation) => {
   const isWide = useMedia("(min-width: 640px)", true);
@@ -60,10 +63,12 @@ const AnimatedListItem = ({ delay, title, description, images, number, prices, t
     <animated.div ref={ref} style={animation}>
       <Link locale={locale} key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white outline transition-all duration-[1000ms]")}>
         <div className="relative overflow-hidden pb-[150%]">
-          <img
-            className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100 group-focus:scale-100"
+          <Image
+            fill
+            quality={50}
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-bottom transition-all duration-500 will-change-transform group-hover:scale-100 group-focus:scale-100"
             src={`/images/cars/${images[0]}`}
-            alt=""
+            alt={title}
           />
           <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/60 group-hover:opacity-100 group-focus:bg-black/60 group-focus:opacity-100">
             <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100  group-focus:translate-y-0 group-focus:opacity-100">
@@ -90,7 +95,7 @@ const AnimatedListItem = ({ delay, title, description, images, number, prices, t
   );
 };
 
-const CarsHome = () => {
+const CarsHome: FC<ComponentProps> = () => {
   const { t } = useTranslation("carsHome");
   const { t: tCommon } = useTranslation("common");
   const animationTitle = useSpring({

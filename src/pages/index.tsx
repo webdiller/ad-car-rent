@@ -14,13 +14,13 @@ const Page: NextPageWithLayout<PageProps> = ({ meta }) => {
   return <HomePage meta={meta} />;
 };
 
-export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const t = await getT(locale, "meta");
   const meta: MetaProps = t("homePage", undefined, { returnObjects: true });
 
   return {
     props: { meta },
-    revalidate: 10,
+    revalidate: 10
   };
 };
 

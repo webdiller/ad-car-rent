@@ -7,7 +7,7 @@ interface ComponentProps {
   meta: MetaProps;
 }
 
-const CatalogPage: FC<ComponentProps> = ({meta}) => {
+const CatalogPage: FC<ComponentProps> = ({ meta }) => {
   return (
     <>
       <NextSeo title={meta.title} description={meta.description} />
