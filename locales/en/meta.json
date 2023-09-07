@@ -1,0 +1,18 @@
+{
+  "homePage": {
+    "title": "Car Rental",
+    "description": "The premier choice for car rentals. Our elite cars ensure your comfort and freedom while traveling. Book now and enjoy your journey!"
+  },
+  "aboutUsPage": {
+    "title": "About Us",
+    "description": "Learn more about our company and our passion for providing exceptional car rental service. We take pride in our history and commitment to quality."
+  },
+  "catalogPage": {
+    "title": "Car Catalog",
+    "description": "Explore our diverse car rental catalog. Whatever your needs, we have a car for everyone. Book now and find the perfect vehicle for your journey!"
+  },
+  "carPage": {
+    "title": "Review Car {{carName}}",
+    "description": "Description of the car and its features. Book this car now!"
+  }
+}

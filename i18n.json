@@ -3,7 +3,7 @@
   "defaultLocale": "ru",
   "localeDetection": false,
   "pages": {
-    "*": ["header", "footer", "common"],
+    "*": ["header", "footer", "common", "meta"],
     "/": ["header", "welcome", "features", "saveMoney", "carsHome"],
     "/about": ["about"],
     "/catalog": ["carsHome"],
