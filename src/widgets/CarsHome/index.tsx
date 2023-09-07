@@ -6,8 +6,8 @@ import { useInView } from "react-intersection-observer";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
-import {Translate} from "next-translate";
-import {ReactNode} from "react";
+import { Translate } from "next-translate";
+import { ReactNode } from "react";
 interface CarPropsWithAnimation extends CarProps {
   delay: number;
   t: Translate;
@@ -20,8 +20,14 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
   });
   const animation = useSpring({
-    from: { opacity: inView ? 0 : 1, transform: inView ? "translateY(5px)" : "translateY(0)" },
-    to: { opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(5px)" },
+    from: {
+      opacity: inView ? 0 : 1,
+      transform: inView ? "translateY(5px)" : "translateY(0)",
+    },
+    to: {
+      opacity: inView ? 1 : 0,
+      transform: inView ? "translateY(0)" : "translateY(5px)",
+    },
     config: { duration: 700 },
     delay: delay,
   });
@@ -29,18 +35,19 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
   return (
     <animated.div ref={ref} style={animation}>
       <Link locale={locale} key={number} href={`/catalog/${number}`} className={clsx("group space-y-[20px] text-white transition-all duration-[1000ms]")}>
-        <div className="relative overflow-hidden pb-[100%]">
+        <div className="relative overflow-hidden pb-[150%]">
           <img className="absolute inset-0 h-full w-full scale-105 object-cover transition-all duration-500 will-change-transform group-hover:scale-100" src={`/images/cars/${images[0]}`} alt="" />
           <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/60 group-hover:opacity-100">
             <div className="p-y-4 translate-y-[10px] space-y-4 px-6 opacity-0 transition-all duration-700 will-change-transform group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="text-[24px]">4X4</p>
+              {/* TODO: Add feature */}
+              {/* <p className="text-[24px]">4X4</p> */}
+              <p className="line-clamp-5 text-gray-300">
+                <span className="font-bold">{title}</span> {t(description)}
+              </p>
               <p className="text-[16px]">
                 <span className="mr-2">{t("FROM")}</span>
                 <span className="mr-[1px] text-[24px] text-[#bfa37c]">1000</span>
                 <span className="align-super text-[20px] text-[#bfa37c]">{tCommon("CURRENCY")}</span>
-              </p>
-              <p className="line-clamp-5 text-gray-300">
-                <span className="font-bold">{title}</span> {t(description)}
               </p>
             </div>
           </div>
@@ -78,14 +85,15 @@ const CarsHome = () => {
         </animated.p>
         <animated.div style={animationDescription} className="space-y-4 text-[18px]">
           <p className="text-[#a6a6a6] md:text-[20px]">{t("SUBTITLE")}</p>
-          <a className="inline-block text-[#bfa37c]" href="tel:0">
-            <span>{t("HOTLINE")}: +1234 5678 901</span>
+          <a className="inline-block text-[#bfa37c]" href="tel:+955591819946">
+            <span>{t("HOTLINE")}: +955 591 81 99 46</span>
           </a>
         </animated.div>
       </div>
       <div data-taos-offset="100" className="aos:opacity-0 grid gap-5 gap-y-10 duration-300 sm:grid-cols-2 lg:grid-cols-3">
         {cars.map(({ number, title, images, description }, index) => {
-          const delay = index * 200;
+          const startIndx = index + 1;
+          const delay = startIndx * 200;
           return <AnimatedListItem t={t} tCommon={tCommon} images={images} number={number} key={index} description={description} title={title} delay={delay} />;
         })}
       </div>

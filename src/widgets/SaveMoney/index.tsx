@@ -11,8 +11,8 @@ const SaveMoney = () => {
       <div className="absolute inset-0 flex h-full w-full flex-col items-start justify-end bg-black/50 text-white">
         <div className="container flex flex-col items-center space-y-4 rounded-md bg-black/20 p-6 text-center">
           <p className="text-2xl sm:text-3xl">{t("TITLE")}</p>
-          <a className="inline-block text-white" href="tel:0">
-            <span>{t("HOTLINE_LABEL")}: +1234 5678 901</span>
+          <a className="inline-block text-white" href="tel:+955591819946">
+            <span>{t("HOTLINE_LABEL")}: +955 591 81 99 46</span>
           </a>
         </div>
       </div>

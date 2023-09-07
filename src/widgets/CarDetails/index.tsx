@@ -81,17 +81,22 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
         <div className="container flex flex-col gap-6 py-[30px] sm:py-[50px] md:flex-row-reverse md:gap-10">
           {/* CONTENT */}
           <div className="space-y-3 py-5 md:flex-1">
-            <animated.h1 style={animationTitle} className="mb-2 text-[28px] font-normal">
-              {car.title}
-            </animated.h1>
+            {/* ITEM */}
+            <animated.div style={animationTitle}>
+              <p className="text-[20px]">
+                <span className="text-[30px] font-normal">{car.title} </span>
+                {tCars(car.description)}
+              </p>
+            </animated.div>
 
-            <animated.div style={animationTags} className="flex flex-wrap gap-2">
+            {/* TODO: Add features */}
+            {/* <animated.div style={animationTags} className="flex flex-wrap gap-2">
               <button className="inline-flex items-center justify-center rounded-md border-[1px] border-[#bfa37c] px-4 py-2 text-lg text-[#black]">4 Persons </button>
               <button className="inline-flex items-center justify-center rounded-md border-[1px] border-[#bfa37c] px-4 py-2 text-lg text-[#black]">Automatic </button>
               <button className="inline-flex items-center justify-center rounded-md border-[1px] border-[#bfa37c] px-4 py-2 text-lg text-[#black]">Black Lether </button>
               <button className="inline-flex items-center justify-center rounded-md border-[1px] border-[#bfa37c] px-4 py-2 text-lg text-[#black]">InteriorLux </button>
               <button className="inline-flex items-center justify-center rounded-md border-[1px] border-[#bfa37c] px-4 py-2 text-lg text-[#black]">Wi-Fi </button>
-            </animated.div>
+            </animated.div> */}
 
             {/* ITEM */}
             <animated.div style={animationPrices}>
@@ -112,13 +117,6 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
               </div>
             </animated.div>
 
-            {/* ITEM */}
-            <animated.div style={animationDescription}>
-              <p className="text-[20px]">
-                <span className="text-[30px] font-normal">{car.title} </span>
-                {tCars(car.description)}
-              </p>
-            </animated.div>
 
             <animated.div style={animationButton}>
               <Link href="/catalog" className="inline-flex items-center justify-center border-[1px] border-[#bfa37c] bg-[#bfa37c]/10 px-4 py-2 text-lg text-black">
@@ -144,7 +142,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
 
           {/* MEDIA */}
           <animated.div style={animationImages} className="md:flex-1 md:self-start">
-            <div className="relative mb-5 cursor-pointer overflow-hidden pb-[56.25%]">
+            <div className="relative mb-5 cursor-pointer overflow-hidden pb-[100%]">
               <PhotoView src={`/images/cars/${mainImageUrl}`}>
                 <img className="absolute inset-0 h-full w-full object-cover" src={`/images/cars/${mainImageUrl}`} alt="" />
               </PhotoView>
@@ -154,7 +152,7 @@ const CarDetails: FC<ComponentProps> = ({ car, currentLocale }) => {
               <div className="grid gap-2 sm:grid-cols-2">
                 {car.images.slice(1).map((url, indx) => {
                   return (
-                    <div key={indx} className="relative cursor-pointer overflow-hidden pb-[56.25%]">
+                    <div key={indx} className="relative cursor-pointer overflow-hidden pb-[100%]">
                       <PhotoView src={`/images/cars/${url}`}>
                         <img className="absolute inset-0 h-full w-full object-cover" src={`/images/cars/${url}`} alt="" />
                       </PhotoView>
