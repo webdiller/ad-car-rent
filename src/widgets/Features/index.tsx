@@ -9,15 +9,16 @@ const Features: FC<ComponentProps> = () => {
   const { t } = useTranslation("features");
   const [rootRef, rootRefInView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
+    initialInView: false
   });
   const animationTitle = useSpring({
-    from: { opacity: rootRefInView ? 0 : 1 },
+    from: { opacity: 0 },
     to: { opacity: rootRefInView ? 1 : 0 },
     config: { duration: 300 },
     delay: 100,
   });
   const animationSubtitle = useSpring({
-    from: { opacity: rootRefInView ? 0 : 1 },
+    from: { opacity: 0 },
     to: { opacity: rootRefInView ? 1 : 0 },
     config: { duration: 300 },
     delay: 300,

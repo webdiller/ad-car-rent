@@ -18,11 +18,12 @@ const AnimatedListItem = ({ delay, title, description, images, number, t, tCommo
   const { locale } = useRouter();
   const [ref, inView] = useInView({
     triggerOnce: true, // Trigger the animation only once when the element enters the viewport.
+    initialInView: false
   });
   const animation = useSpring({
     from: {
-      opacity: inView ? 0 : 1,
-      transform: inView ? "translateY(5px)" : "translateY(0)",
+      opacity: 0,
+      transform: "translateY(5px)",
     },
     to: {
       opacity: inView ? 1 : 0,
