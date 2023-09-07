@@ -1,6 +1,7 @@
 import { contacts } from "@/shared/contacts";
 import { removePlusAndSpaces } from "@/shared/helpers/removePlusAndSpaces";
 import useTranslation from "next-translate/useTranslation";
+import bgImage from "@/public/images/welcome-bg.jpg"
 
 const SaveMoney = () => {
   const { t } = useTranslation("saveMoney");
@@ -8,7 +9,7 @@ const SaveMoney = () => {
   return (
     <div className="relative h-[60vh] bg-black">
       <div className="absolute inset-0 h-full w-full">
-        <img className="h-full w-full object-cover" src="/images/welcome-bg.jpg" alt="" />
+        <img className="h-full w-full object-cover" src={bgImage.src} alt="" />
       </div>
       <div className="absolute inset-0 flex h-full w-full flex-col items-start justify-end bg-black/50 text-white">
         <div className="container flex flex-col items-center space-y-4 rounded-md bg-black/20 p-6 text-center">
