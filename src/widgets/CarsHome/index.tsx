@@ -2,7 +2,7 @@ import { cars } from "@/shared/cars";
 import { CarProps } from "@/shared/types";
 import clsx from "clsx";
 import { useSpring, animated } from "react-spring";
-import { useInView } from "react-intersection-observer";
+import { InView, useInView } from "react-intersection-observer";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useTranslation from "next-translate/useTranslation";
@@ -100,16 +100,16 @@ const CarsHome: FC<ComponentProps> = () => {
   const { t: tCommon } = useTranslation("common");
   const animationTitle = useSpring({
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: InView ? 1 : 0 },
     config: { duration: 300 },
-    delay: 50,
+    delay: 300,
   });
 
   const animationDescription = useSpring({
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: InView ? 1 : 0 },
     config: { duration: 300 },
-    delay: 100,
+    delay: 350,
   });
 
   return (

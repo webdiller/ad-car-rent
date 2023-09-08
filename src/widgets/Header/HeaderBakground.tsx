@@ -1,4 +1,5 @@
 "use client";
+import NavigationContacts from "@/shared/ui/NavigationContacts";
 import NavigationLocale from "@/shared/ui/NavigationLocale";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
@@ -22,22 +23,22 @@ const HeaderBakground: FC<ComponentProps> = () => {
               delay: 50,
             })}
           >
-            <Link className="italic tracking-wider sm:text-xl" href="/">
+            <Link className="whitespace-nowrap italic tracking-wider sm:text-xl" href="/">
               A.D. Car Rent
             </Link>
           </animated.div>
-          <div className="grid">
-            <animated.div
-              style={useSpring({
-                from: { opacity: 0 },
-                to: { opacity: 1 },
-                config: { duration: 300 },
-                delay: 100,
-              })}
-            >
-              <NavigationLocale />
-            </animated.div>
-          </div>
+          <animated.div
+            className="grid max-w-[120px] grid-cols-2 gap-2 sm:max-w-none"
+            style={useSpring({
+              from: { opacity: 0 },
+              to: { opacity: 1 },
+              config: { duration: 300 },
+              delay: 100,
+            })}
+          >
+            <NavigationContacts />
+            <NavigationLocale />
+          </animated.div>
         </div>
 
         <div className="border-b-[1px] border-[#bfa37c]/20"></div>

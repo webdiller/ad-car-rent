@@ -3,5 +3,9 @@
   "CURRENCY_DOLLAR": "$",
   "HOUR": "час",
   "DAY": "сутки",
-  "MONTH": "месяц"
+  "MONTH": "месяц",
+  "CONTACTS": "Контакты",
+  "PHONE": "Телефон",
+  "WHATS_APP": "WhatsApp",
+  "TELEGRAM": "Telegram"
 }
